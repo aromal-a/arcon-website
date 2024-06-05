@@ -13,14 +13,14 @@ export default function CatalogueSection() {
         },
         {
             id: "02",
-            catagory: "KITCHING SETUP",
+            catagory: "KITHEN SETUP",
             title: "Neat & Clean Kitchen",
             image: "/image/kitchen1.jpg",
             description: "A neat and clean kitchen setup by Arcon emphasizes simplicity and functionality with sleek countertops and minimal clutter. Bright lighting and organized storage ensure an efficient and welcoming space for cooking and gathering",
         },
         {
             id: "03",
-            catagory: "DROWING SETUP",
+            catagory: "DRAWING ROOM",
             title: "Family Drowing Room",
             image: "/image/drowing.jpg",
             description: "An inviting drawing setup by Arcon combines comfort and style, featuring soft lighting, plush seating, and personalized décor elements. With a focus on creating a warm and welcoming ambiance, it's the ideal space for artistic inspiration and relaxation.",
