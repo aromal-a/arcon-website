@@ -13,7 +13,7 @@ export default function HeroSection() {
                     <p className="pb-6 text-gray-500 xl:pb-10">
                         Change your view with the best interior design. <br /> We provide the best interior design for your Home. <br />Make every moment beautiful with the best interior design.
                     </p>
-                    <button className="inline-flex items-center px-8 py-3 text-white rounded-full shadow-lg bg-gray-950 hover:bg-gray-800 hover:ring-2 hover:ring-gray-950 ring-offset-2 ">Get Started <TbArrowUpRight className="w-5 h-5 ml-2" /></button>
+                   
                 </div>
 
                 <div className="w-1/2">
