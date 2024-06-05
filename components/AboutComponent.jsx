@@ -14,7 +14,7 @@ export default function AboutComponent() {
 
                 <div className="items-center">
                     <p className="px-12 pb-4 ">
-                        Arcon is a company engaged in the field of interior design. We provide the best interior design for your home. We have been trusted by many people to design their homes. We have also received many awards from various countries for our work.
+                        Arcon Interiors and Designs is a company engaged in the field of interior design. We provide the best interior design for your home. We have been trusted by many people to design their homes. We have also received many awards from various countries for our work.
                     </p>
                     
                 </div>
