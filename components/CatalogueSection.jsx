@@ -16,7 +16,7 @@ export default function CatalogueSection() {
             catagory: "KITCHING SETUP",
             title: "Neat & Clean Kitchen",
             image: "/image/kitchen1.jpg",
-            description: "A cozy bedroom setup by Arcon features warm tones and plush textiles, creating a serene and comfortable space for rest and relaxation. Soft lighting and personal touches enhance the inviting atmosphere, making it the perfect retreat for unwinding.",
+            description: "A neat and clean kitchen setup by Arcon emphasizes simplicity and functionality with sleek countertops and minimal clutter. Bright lighting and organized storage ensure an efficient and welcoming space for cooking and gathering",
         },
         {
             id: "03",
@@ -30,7 +30,7 @@ export default function CatalogueSection() {
             catagory: "LIVING SETUP",
             title: "Clean Family Room",
             image: "/image/living.jpg",
-            description: "A living setup encompasses the heart of the home, offering a versatile space for relaxation, socializing, and everyday living. Typically characterized by comfortable seating arrangements, such as sofas and armchairs, a living setup by Arcon balances style and functionality with carefully curated decor and ample space for family gatherings or quiet evenings. With thoughtful attention to detail and a focus on comfort, Arcon creates inviting living spaces tailored to your lifestyle.",
+            description: "A cozy bedroom setup by Arcon features warm tones and plush textiles, creating a serene and comfortable space for rest and relaxation. Soft lighting and personal touches enhance the inviting atmosphere, making it the perfect retreat for unwinding",
         },
     ]
 
