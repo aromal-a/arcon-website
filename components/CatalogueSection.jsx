@@ -7,9 +7,9 @@ export default function CatalogueSection() {
         {
             id: "01",
             catagory: "BEDROOM SETUP",
-            title: "Cossy Bedroom Setup",
+            title: "Cozy Bedroom Setup",
             image: "/image/badroom.jpg",
-            description: "family drowing room with a clean and comfortable design for your family.",
+            description: "A cozy bedroom setup with warm tones and plush textiles offers a serene and comfortable space for rest and relaxation. Soft lighting and personal touches create an inviting atmosphere, perfect for unwinding..",
         },
         {
             id: "02",
