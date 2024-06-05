@@ -9,28 +9,28 @@ export default function CatalogueSection() {
             catagory: "BEDROOM SETUP",
             title: "Cozy Bedroom Setup",
             image: "/image/badroom.jpg",
-            description: "A cozy bedroom setup with warm tones and plush textiles offers a serene and comfortable space for rest and relaxation. Soft lighting and personal touches create an inviting atmosphere, perfect for unwinding..",
+            description: "A cozy bedroom setup by Arcon features warm tones and plush textiles, creating a serene and comfortable space for rest and relaxation. Soft lighting and personal touches enhance the inviting atmosphere, making it the perfect retreat for unwinding.",
         },
         {
             id: "02",
             catagory: "KITCHING SETUP",
             title: "Neat & Clean Kitchen",
             image: "/image/kitchen1.jpg",
-            description: "family drowing room with a clean and comfortable design for your family.",
+            description: "A cozy bedroom setup by Arcon features warm tones and plush textiles, creating a serene and comfortable space for rest and relaxation. Soft lighting and personal touches enhance the inviting atmosphere, making it the perfect retreat for unwinding.",
         },
         {
             id: "03",
             catagory: "DROWING SETUP",
             title: "Family Drowing Room",
             image: "/image/drowing.jpg",
-            description: "family drowing room with a clean and comfortable design for your family.",
+            description: "An inviting drawing setup by Arcon combines comfort and style, featuring soft lighting, plush seating, and personalized décor elements. With a focus on creating a warm and welcoming ambiance, it's the ideal space for artistic inspiration and relaxation.",
         },
         {
             id: "04",
             catagory: "LIVING SETUP",
             title: "Clean Family Room",
             image: "/image/living.jpg",
-            description: "family drowing room with a clean and comfortable design for your family.",
+            description: "A living setup encompasses the heart of the home, offering a versatile space for relaxation, socializing, and everyday living. Typically characterized by comfortable seating arrangements, such as sofas and armchairs, a living setup by Arcon balances style and functionality with carefully curated decor and ample space for family gatherings or quiet evenings. With thoughtful attention to detail and a focus on comfort, Arcon creates inviting living spaces tailored to your lifestyle.",
         },
     ]
 
