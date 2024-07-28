@@ -10,7 +10,7 @@ export default function Gallery() {
 
             <div class="flex flex-col gap-4">
                 <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/badroom.jpg" alt="" />
+                    <img class="h-auto max-w-full rounded-lg" src="/image/two.jpg" alt="" />
                 </div>
                 <div>
                     <img class="h-auto max-w-full rounded-lg" src="/image/gallery2.jpg" alt="" />
