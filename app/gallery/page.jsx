@@ -27,15 +27,15 @@ export default function Gallery() {
                     <img class="h-auto max-w-full rounded-lg" src="/image/seven.jpeg" alt="" />
                 </div>
                 <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/living.jpg" alt="" />
+                    <img class="h-auto max-w-full rounded-lg" src="/image/six.jpeg" alt="" />
                 </div>
             </div>
             <div class="flex flex-col gap-4">
                 <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/gallery14.jpg" alt="" />
+                    <img class="h-auto max-w-full rounded-lg" src="/image/ten.jpeg" alt="" />
                 </div>
                 <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/gallery15.jpg" alt="" />
+                    <img class="h-auto max-w-full rounded-lg" src="/image/two.jpeg" alt="" />
                 </div>
                 <div>
                     <img class="h-auto max-w-full rounded-lg" src="/image/gallery12.jpg" alt="" />
