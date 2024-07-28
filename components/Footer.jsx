@@ -24,23 +24,14 @@ export default function Footer() {
                         </div>
                     </div>
                 </div>
-                <div className="pt-4 text-center border-t-2 lg:pt-0 lg:text-left lg:border-0 lg:pl-20 ">
-                    <p className="pb-4 text-xl font-semibold">STAY UPDATED</p>
-                    <div className="relative lg:max-w-sm">
-                        <input className="w-full px-4 pr-20 border-2 border-gray-300 rounded-full h-14" type="text" placeholder="Email Address" />
-                        <button className="absolute h-10 px-3 text-sm text-white bg-black rounded-full top-2 right-2 hover:border-2 hover:border-black hover:bg-white hover:text-black">Subscribe</button>
-                    </div>
-                    <p className="pt-4 text-gray-500">
-                        By subscribing to our newsletter, you agree to receive emails from us. Your personal data will be stored and processed in accordance with our Privacy Policy and you can unsubscribe at any time.
-                    </p>
-                </div>
+                
             </div>
 
             {/* Copy Right */}
             <div className="py-10 bg-zinc-200">
                 <div className="container text-center text-gray-500 lg:justify-between lg:flex">
                     <div className="pb-4 lg:pb-0">
-                        <p>&copy;2023 DIGIMAX.All rights reserved </p>
+                        <p>&copy;2024 ARCON DESIGNS AND INTERIORS.All rights reserved </p>
                     </div>
                     <div className="">
                         <Link className="p-4 hover:underline" href="/privacy">Privacy</Link>
