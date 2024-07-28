@@ -13,7 +13,7 @@ export default function Gallery() {
                     <img class="h-auto max-w-full rounded-lg" src="/image/two.jpg" alt="" />
                 </div>
                 <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/gallery2.jpg" alt="" />
+                    <img class="h-auto max-w-full rounded-lg" src="/image/gallery2.jpeg" alt="" />
                 </div>
                 <div>
                     <img class="h-auto max-w-full rounded-lg" src="/image/gallery.jpg" alt="" />
