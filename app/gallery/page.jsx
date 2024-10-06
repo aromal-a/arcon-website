@@ -16,7 +16,13 @@ export default function Gallery() {
                     <img class="h-auto max-w-full rounded-lg" src="/image/eight.jpeg" alt="" />
                 </div>
                 <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/nine.jpeg" alt="" />
+                    <img class="h-auto max-w-full rounded-lg" src="/image/p1.jpeg" alt="" />
+                </div>
+                <div>
+                    <img class="h-auto max-w-full rounded-lg" src="/image/p2.jpeg" alt="" />
+                </div>
+                <div>
+                    <img class="h-auto max-w-full rounded-lg" src="/image/p3.jpeg" alt="" />
                 </div>
             </div>
             <div class="flex flex-col gap-4">
