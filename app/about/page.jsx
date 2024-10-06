@@ -3,7 +3,7 @@ import { TbArrowUpRight } from "react-icons/tb"
 export default function About() {
     return (
         <div>
-            <div className="bg-[url('/image/about.jpg')] bg-center bg-cover ">
+            <div className="bg-[url('/image/p13.jpg')] bg-center bg-cover ">
                 <h1 className="container py-32 text-6xl font-semibold tracking-widest text-center text-white lg:py-64 lg:text-left ">WHO ARE WE?</h1>
 
             </div>
