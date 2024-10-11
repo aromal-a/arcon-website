@@ -1,3 +1,4 @@
+
 "use client";
 import Image from "next/image";
 import { TbArrowNarrowRight } from "react-icons/tb";
@@ -7,30 +8,30 @@ export default function CatalogueSection() {
         {
             id: "01",
             catagory: "BEDROOM SETUP",
-            title: "Cozy Bedroom Setup",
+            title: "Cossy Bedroom Setup",
             image: "/image/badroom.jpg",
-            description: "A cozy bedroom setup by Arcon features warm tones and plush textiles, creating a serene and comfortable space for rest and relaxation. Soft lighting and personal touches enhance the inviting atmosphere, making it the perfect retreat for unwinding.",
+            description: "family drowing room with a clean and comfortable design for your family.",
         },
         {
             id: "02",
-            catagory: "KITHEN SETUP",
+            catagory: "KITCHING SETUP",
             title: "Neat & Clean Kitchen",
             image: "/image/kitchen1.jpg",
-            description: "A neat and clean kitchen setup by Arcon emphasizes simplicity and functionality with sleek countertops and minimal clutter. Bright lighting and organized storage ensure an efficient and welcoming space for cooking and gathering",
+            description: "family drowing room with a clean and comfortable design for your family.",
         },
         {
             id: "03",
-            catagory: "DRAWING ROOM",
+            catagory: "DROWING SETUP",
             title: "Family Drowing Room",
             image: "/image/drowing.jpg",
-            description: "An inviting drawing setup by Arcon combines comfort and style, featuring soft lighting, plush seating, and personalized décor elements. With a focus on creating a warm and welcoming ambiance, it's the ideal space for artistic inspiration and relaxation.",
+            description: "family drowing room with a clean and comfortable design for your family.",
         },
         {
             id: "04",
             catagory: "LIVING SETUP",
             title: "Clean Family Room",
             image: "/image/living.jpg",
-            description: "A cozy bedroom setup by Arcon features warm tones and plush textiles, creating a serene and comfortable space for rest and relaxation. Soft lighting and personal touches enhance the inviting atmosphere, making it the perfect retreat for unwinding",
+            description: "family drowing room with a clean and comfortable design for your family.",
         },
     ]
 
@@ -48,6 +49,7 @@ export default function CatalogueSection() {
                         </div>
                         <a className="block text-xl font-semibold" href="">{item.title}</a>
                         <p className="py-4 text-gray-500">{item.description}</p>
+                        <a className="inline-flex items-center font-medium" href="">See Details <TbArrowNarrowRight className="ml-2 text-xl " /></a>
                     </div>
 
                     <div className="inset-0 flex-col items-center justify-end hidden gap-32 pb-16 text-xl transition duration-300 ease-in-out border-b-2 md:flex md:absolute group-hover:translate-y-full md:border-b-0 bg-zinc-100">
