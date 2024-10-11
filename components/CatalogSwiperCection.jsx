@@ -15,11 +15,11 @@ export default function CatalogSwiperSection() {
                     <h1 className="py-4 text-4xl font-medium lg:text-6xl lg:py-0">Modern Classic</h1>
                 </div>
                 <div>
-                    <h2 className="pb-6 text-xl font-bold tracking-wider">LUXURY DECOR TO CREATE COMFORT IN OUR HOME</h2>
+                    <h2 className="pb-6 text-xl font-bold tracking-wider">WE CREATE DESIGNS ETCHED FROM YOUR HEART</h2>
                     <div className="grid grid-cols-2 text-gray-500 gap-x-8">
                         <div>
                             <p>
-                                With our passion for design and decor, we have created a collection of furniture and accessories that will help you create a comfortable and stylish home.
+                                With our passion for design and decor, we have created a collection of furniture,interiors and accessories that will help you create a comfortable and stylish home.
                             </p>
                         </div>
                         <div>
