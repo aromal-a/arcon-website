@@ -51,7 +51,8 @@ export default function Gallery() {
                 <div>
                     <img class="h-auto max-w-full rounded-lg" src="/image/p3.jpeg" alt="" />
                 </div>
-
+            </div>
+            <div class="flex flex-col gap-4">
                 <div>
                     <img class="h-auto max-w-full rounded-lg" src="/image/s1.jpeg" alt="" />
                 </div>
