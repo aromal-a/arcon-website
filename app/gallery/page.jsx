@@ -51,6 +51,22 @@ export default function Gallery() {
                 <div>
                     <img class="h-auto max-w-full rounded-lg" src="/image/p3.jpeg" alt="" />
                 </div>
+
+                <div>
+                    <img class="h-auto max-w-full rounded-lg" src="/image/s1.jpeg" alt="" />
+                </div>
+                <div>
+                    <img class="h-auto max-w-full rounded-lg" src="/image/s2.jpeg" alt="" />
+                </div>
+                <div>
+                    <img class="h-auto max-w-full rounded-lg" src="/image/s3.jpeg" alt="" />
+                </div>
+                <div>
+                    <img class="h-auto max-w-full rounded-lg" src="/image/s4.jpeg" alt="" />
+                </div>
+                <div>
+                    <img class="h-auto max-w-full rounded-lg" src="/image/s5.jpeg" alt="" />
+                </div>
     
             </div>
         </div>
