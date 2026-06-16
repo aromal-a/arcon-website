@@ -2,7 +2,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [], // Add domains if you use external images
+    domains: ["arconfordesign.xyz"], // Add domains if you use external images
   },
 }
 
