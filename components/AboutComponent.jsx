@@ -15,7 +15,7 @@ export default function AboutComponent() {
                     <p className="px-12 pb-4 ">
                         Arcon Interiors and Designs is a company engaged in the field of interior design. We build and provide the best interior design for your home. We have been trusted by many people to design their homes.
                     </p>
-                    
+                    <p className = "px-12 pb-4 ">We deliver precise cuts and fields to your dream design. We will help you colour your dream aesthetic</>
                 </div>
             </div>
         </div>
