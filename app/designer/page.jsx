@@ -184,7 +184,10 @@ export default function DesignerPage() {
                 min="1"
                 value={selectedModule.widthInches}
                 onChange={(event) =>
-                  updateSelectedModule("widthInches", Number(event.target.value) || 0)
+                  updateSelectedModule(
+                    "widthInches",
+                    Math.max(1, Number(event.target.value) || 1)
+                  )
                 }
                 className="px-3 py-2 border rounded-md"
               />
@@ -197,7 +200,10 @@ export default function DesignerPage() {
                 min="1"
                 value={selectedModule.heightInches}
                 onChange={(event) =>
-                  updateSelectedModule("heightInches", Number(event.target.value) || 0)
+                  updateSelectedModule(
+                    "heightInches",
+                    Math.max(1, Number(event.target.value) || 1)
+                  )
                 }
                 className="px-3 py-2 border rounded-md"
               />
