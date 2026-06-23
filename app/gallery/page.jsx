@@ -80,7 +80,6 @@ import Image from "next/image";
                 </div>
     
             </div>
-        </div>
         <div>
           <Image className="h-auto max-w-full rounded-lg" src="/image/p3.jpeg" alt="" width={500} height={500} />
         </div>
