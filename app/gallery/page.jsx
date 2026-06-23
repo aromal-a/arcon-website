@@ -10,57 +10,57 @@ export default function Gallery() {
 
             <div className="flex flex-col gap-4">
                 <div>
-                    <img className="h-auto max-w-full rounded-lg" src="/image/three.jpeg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/three.jpeg" alt="Interior design project" />
                 </div>
                 <div>
-                    <img className="h-auto max-w-full rounded-lg" src="/image/eight.jpeg" alt="" />
-                </div>
-            </div>
-            <div className="flex flex-col gap-4">
-                <div>
-                    <img className="h-auto max-w-full rounded-lg" src="/image/one.jpeg" alt="" />
-                </div>
-                <div>
-                    <img className="h-auto max-w-full rounded-lg" src="/image/seven.jpeg" alt="" />
-                </div>
-                <div>
-                    <img className="h-auto max-w-full rounded-lg" src="/image/six.jpeg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/eight.jpeg" alt="Interior design project" />
                 </div>
             </div>
             <div className="flex flex-col gap-4">
                 <div>
-                    <img className="h-auto max-w-full rounded-lg" src="/image/ten.jpeg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/one.jpeg" alt="Interior design project" />
                 </div>
                 <div>
-                    <img className="h-auto max-w-full rounded-lg" src="/image/two.jpeg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/seven.jpeg" alt="Interior design project" />
+                </div>
+                <div>
+                    <img className="h-auto max-w-full rounded-lg" src="/image/six.jpeg" alt="Interior design project" />
                 </div>
             </div>
             <div className="flex flex-col gap-4">
                 <div>
-                    <img className="h-auto max-w-full rounded-lg" src="/image/p1.jpeg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/ten.jpeg" alt="Interior design project" />
+                </div>
+                <div>
+                    <img className="h-auto max-w-full rounded-lg" src="/image/two.jpeg" alt="Interior design project" />
+                </div>
+            </div>
+            <div className="flex flex-col gap-4">
+                <div>
+                    <img className="h-auto max-w-full rounded-lg" src="/image/p1.jpeg" alt="Interior design project" />
                 </div>
                  <div>
-                    <img className="h-auto max-w-full rounded-lg" src="/image/p2.jpeg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/p2.jpeg" alt="Interior design project" />
                 </div>
                 <div>
-                    <img className="h-auto max-w-full rounded-lg" src="/image/p3.jpeg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/p3.jpeg" alt="Interior design project" />
                 </div>
             </div>
             <div className="flex flex-col gap-4">
                 <div>
-                    <img className="h-auto max-w-full rounded-lg" src="/image/s1.jpg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/s1.jpg" alt="Interior design project" />
                 </div>
                 <div>
-                    <img className="h-auto max-w-full rounded-lg" src="/image/s2.jpg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/s2.jpg" alt="Interior design project" />
                 </div>
                 <div>
-                    <img className="h-auto max-w-full rounded-lg" src="/image/s3.jpg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/s3.jpg" alt="Interior design project" />
                 </div>
                 <div>
-                    <img className="h-auto max-w-full rounded-lg" src="/image/s4.jpg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/s4.jpg" alt="Interior design project" />
                 </div>
                 <div>
-                    <img className="h-auto max-w-full rounded-lg" src="/image/s5.jpg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/s5.jpg" alt="Interior design project" />
                 </div>
     
             </div>
