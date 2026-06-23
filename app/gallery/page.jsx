@@ -81,7 +81,7 @@ import Image from "next/image";
     
             </div>
         <div>
-          <Image className="h-auto max-w-full rounded-lg" src="/image/p3.jpeg" alt="" width={500} height={500} />
+          <Image className="h-auto max-w-full rounded-lg" src="/image/p3.jpeg" alt="Interior design project" width={500} height={500} />
         </div>
       </div>
 
