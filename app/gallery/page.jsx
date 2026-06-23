@@ -4,63 +4,63 @@ export default function Gallery() {
 
     return (
 
-        <div class="container py-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="container py-10 grid grid-cols-2 md:grid-cols-4 gap-4">
 
 
 
-            <div class="flex flex-col gap-4">
+            <div className="flex flex-col gap-4">
                 <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/three.jpeg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/three.jpeg" alt="" />
                 </div>
                 <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/eight.jpeg" alt="" />
-                </div>
-            </div>
-            <div class="flex flex-col gap-4">
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/one.jpeg" alt="" />
-                </div>
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/seven.jpeg" alt="" />
-                </div>
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/six.jpeg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/eight.jpeg" alt="" />
                 </div>
             </div>
-            <div class="flex flex-col gap-4">
+            <div className="flex flex-col gap-4">
                 <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/ten.jpeg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/one.jpeg" alt="" />
                 </div>
                 <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/two.jpeg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/seven.jpeg" alt="" />
+                </div>
+                <div>
+                    <img className="h-auto max-w-full rounded-lg" src="/image/six.jpeg" alt="" />
                 </div>
             </div>
-            <div class="flex flex-col gap-4">
+            <div className="flex flex-col gap-4">
                 <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/p1.jpeg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/ten.jpeg" alt="" />
+                </div>
+                <div>
+                    <img className="h-auto max-w-full rounded-lg" src="/image/two.jpeg" alt="" />
+                </div>
+            </div>
+            <div className="flex flex-col gap-4">
+                <div>
+                    <img className="h-auto max-w-full rounded-lg" src="/image/p1.jpeg" alt="" />
                 </div>
                  <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/p2.jpeg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/p2.jpeg" alt="" />
                 </div>
                 <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/p3.jpeg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/p3.jpeg" alt="" />
                 </div>
             </div>
-            <div class="flex flex-col gap-4">
+            <div className="flex flex-col gap-4">
                 <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/s1.jpg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/s1.jpg" alt="" />
                 </div>
                 <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/s2.jpg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/s2.jpg" alt="" />
                 </div>
                 <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/s3.jpg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/s3.jpg" alt="" />
                 </div>
                 <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/s4.jpg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/s4.jpg" alt="" />
                 </div>
                 <div>
-                    <img class="h-auto max-w-full rounded-lg" src="/image/s5.jpg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/s5.jpg" alt="" />
                 </div>
     
             </div>
