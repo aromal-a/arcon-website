@@ -2,323 +2,404 @@
 
 import { useMemo, useState } from "react";
 
-const GRID_COLUMNS = 8;
-const GRID_ROWS = 6;
-
-const createDefaultModule = (x, y) => ({
-  id: `${x}-${y}`,
-  x,
-  y,
-  label: `Module ${x + 1}-${y + 1}`,
-  widthInches: 24,
+const createLane = (id) => ({
+  id,
+  label: `Lane ${id}`,
+  widthInches: 30,
   heightInches: 84,
-  groundLevelInches: 0,
-  doors: 2,
-  subPanels: 0,
-  hasEntryDoor: false,
-  entryDoorType: "single",
+  depthInches: 24,
+  groundGapInches: 0,
+  shelves: 4,
+  drawers: 2,
+  doorStyle: "double",
 });
 
-const createCellId = (x, y) => `${x}-${y}`;
+const styleOptions = [
+  { value: "open", label: "Open" },
+  { value: "single", label: "Single door" },
+  { value: "double", label: "Double door" },
+  { value: "sliding", label: "Sliding" },
+];
+
+const MIN_WIDTH = 12;
+const MIN_HEIGHT = 60;
+const MIN_DEPTH = 12;
 
 export default function DesignerPage() {
-  const [projectName, setProjectName] = useState("");
-  const [projectType, setProjectType] = useState("wardrobe");
-  const [projectNotes, setProjectNotes] = useState("");
-  const [modules, setModules] = useState([]);
-  const [selectedModuleId, setSelectedModuleId] = useState(null);
+  const [projectName, setProjectName] = useState("My Wardrobe");
+  const [roomWallWidth, setRoomWallWidth] = useState(144);
+  const [notes, setNotes] = useState("");
+  const [selectedLaneId, setSelectedLaneId] = useState(1);
+  const [lanes, setLanes] = useState([createLane(1), createLane(2), createLane(3)]);
 
-  const selectedModule = useMemo(
-    () => modules.find((module) => module.id === selectedModuleId) || null,
-    [modules, selectedModuleId]
+  const selectedLane = useMemo(
+    () => lanes.find((lane) => lane.id === selectedLaneId) || null,
+    [lanes, selectedLaneId]
   );
 
-  const toggleCell = (x, y) => {
-    const id = createCellId(x, y);
-    const moduleExists = modules.some((module) => module.id === id);
+  const totals = useMemo(() => {
+    const totalWidth = lanes.reduce((sum, lane) => sum + lane.widthInches, 0);
+    const maxHeight = lanes.reduce((max, lane) => Math.max(max, lane.heightInches), 0);
+    const frontAreaSqFt = lanes.reduce(
+      (sum, lane) => sum + (lane.widthInches * lane.heightInches) / 144,
+      0
+    );
+    const volumeCuFt = lanes.reduce(
+      (sum, lane) => sum + (lane.widthInches * lane.heightInches * lane.depthInches) / 1728,
+      0
+    );
+    const materialIndex = Math.round(frontAreaSqFt * 1.4 + volumeCuFt * 0.6);
 
-    if (moduleExists) {
-      setModules((previousModules) =>
-        previousModules.filter((module) => module.id !== id)
-      );
-      setSelectedModuleId((previousId) => (previousId === id ? null : previousId));
-      return;
-    }
+    return {
+      totalWidth,
+      maxHeight,
+      frontAreaSqFt,
+      volumeCuFt,
+      materialIndex,
+      fitPercent: roomWallWidth > 0 ? Math.min((totalWidth / roomWallWidth) * 100, 999) : 0,
+    };
+  }, [lanes, roomWallWidth]);
 
-    setModules((previousModules) => [...previousModules, createDefaultModule(x, y)]);
-    setSelectedModuleId(id);
+  const addLane = () => {
+    const nextId = lanes.length > 0 ? Math.max(...lanes.map((lane) => lane.id)) + 1 : 1;
+    const lane = createLane(nextId);
+    setLanes((prev) => [...prev, lane]);
+    setSelectedLaneId(lane.id);
   };
 
-  const updateSelectedModule = (field, value) => {
-    if (!selectedModuleId) {
+  const removeLane = (id) => {
+    if (lanes.length === 1) {
       return;
     }
 
-    setModules((previousModules) =>
-      previousModules.map((module) =>
-        module.id === selectedModuleId ? { ...module, [field]: value } : module
-      )
-    );
+    setLanes((prev) => prev.filter((lane) => lane.id !== id));
+    setSelectedLaneId((currentId) => {
+      if (currentId !== id) {
+        return currentId;
+      }
+      const remaining = lanes.filter((lane) => lane.id !== id);
+      return remaining.length > 0 ? remaining[0].id : null;
+    });
+  };
+
+  const updateLane = (id, key, value) => {
+    setLanes((prev) => prev.map((lane) => (lane.id === id ? { ...lane, [key]: value } : lane)));
   };
 
   return (
-    <div className="container py-10 space-y-8">
-      <div className="space-y-3">
-        <h1 className="text-4xl font-bold tracking-wide">Design Studio</h1>
+    <main className="container py-10 space-y-8">
+      <header className="space-y-2">
+        <h1 className="text-4xl font-bold tracking-tight">Wardrobe Maker</h1>
         <p className="max-w-3xl text-gray-600">
-          Build your wardrobe and interior layout by placing modules on the plane, then
-          customize dimensions, ground levels, doors, sub-panels and entry doors.
+          Build a quick rough estimate with a lane-based structure: enter measurements,
+          tweak shelf/drawer setup, and instantly preview a minimal visual wardrobe front.
         </p>
-      </div>
+      </header>
 
-      <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-        <section className="p-5 border rounded-xl bg-zinc-50">
-          <h2 className="text-xl font-semibold">1. Create on Plane</h2>
-          <p className="pt-1 pb-4 text-sm text-gray-600">
-            Click on a cell to add a module. Click again to remove it.
-          </p>
-
-          <div
-            className="grid gap-2"
-            style={{ gridTemplateColumns: `repeat(${GRID_COLUMNS}, minmax(0, 1fr))` }}
-          >
-            {Array.from({ length: GRID_ROWS * GRID_COLUMNS }, (_, index) => {
-              const x = index % GRID_COLUMNS;
-              const y = Math.floor(index / GRID_COLUMNS);
-              const id = createCellId(x, y);
-              const isPlaced = modules.some((module) => module.id === id);
-              const isSelected = selectedModuleId === id;
-
-              return (
-                <button
-                  key={id}
-                  type="button"
-                  onClick={() => toggleCell(x, y)}
-                  className={`aspect-square rounded border text-xs font-medium transition ${
-                    isSelected
-                      ? "border-black bg-black text-white"
-                      : isPlaced
-                        ? "border-gray-700 bg-gray-200 text-gray-900"
-                        : "border-gray-300 bg-white text-gray-500 hover:bg-gray-100"
-                  }`}
-                >
-                  {x + 1},{y + 1}
-                </button>
-              );
-            })}
-          </div>
-        </section>
-
-        <section className="p-5 border rounded-xl bg-zinc-50">
-          <h2 className="text-xl font-semibold">2. Project Details</h2>
-          <div className="grid gap-4 pt-4">
+      <section className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="p-5 border rounded-xl bg-zinc-50 space-y-4">
+          <h2 className="text-xl font-semibold">Project Setup</h2>
+          <div className="grid gap-4 md:grid-cols-2">
             <label className="grid gap-1 text-sm">
               Project name
               <input
-                type="text"
+                className="px-3 py-2 border rounded-md"
                 value={projectName}
                 onChange={(event) => setProjectName(event.target.value)}
-                placeholder="My wardrobe design"
-                className="px-3 py-2 border rounded-md"
+                placeholder="Master bedroom wardrobe"
               />
             </label>
-
             <label className="grid gap-1 text-sm">
-              Design type
-              <select
-                value={projectType}
-                onChange={(event) => setProjectType(event.target.value)}
+              Available wall width (inches)
+              <input
+                type="number"
+                min="1"
                 className="px-3 py-2 border rounded-md"
+                value={roomWallWidth}
+                onChange={(event) => setRoomWallWidth(Math.max(1, Number(event.target.value) || 1))}
+              />
+            </label>
+          </div>
+          <label className="grid gap-1 text-sm">
+            Notes
+            <textarea
+              rows={3}
+              className="px-3 py-2 border rounded-md"
+              value={notes}
+              onChange={(event) => setNotes(event.target.value)}
+              placeholder="Color palette options can be attached later."
+            />
+          </label>
+
+          <div className="grid gap-2 sm:grid-cols-2">
+            <StatCard label="Total lane width" value={`${totals.totalWidth.toFixed(0)} in`} />
+            <StatCard
+              label="Wall usage"
+              value={`${totals.fitPercent.toFixed(0)}%`}
+              tone={totals.totalWidth > roomWallWidth ? "warning" : "normal"}
+            />
+            <StatCard label="Front area" value={`${totals.frontAreaSqFt.toFixed(1)} sq ft`} />
+            <StatCard label="Volume" value={`${totals.volumeCuFt.toFixed(1)} cu ft`} />
+          </div>
+
+          <div className="p-3 text-sm border rounded-md bg-white">
+            <span className="font-semibold">Material index:</span> {totals.materialIndex}
+            <p className="mt-1 text-gray-500">
+              Rough only: higher index means larger build and likely higher cost.
+            </p>
+          </div>
+        </div>
+
+        <div className="p-5 border rounded-xl bg-zinc-50 space-y-3">
+          <h2 className="text-xl font-semibold">Lane Controls</h2>
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={addLane}
+              className="px-3 py-2 text-sm font-medium text-white bg-black rounded-md"
+            >
+              Add lane
+            </button>
+            {lanes.map((lane) => (
+              <button
+                key={lane.id}
+                type="button"
+                onClick={() => setSelectedLaneId(lane.id)}
+                className={`px-3 py-2 text-sm border rounded-md ${
+                  selectedLaneId === lane.id ? "bg-black text-white border-black" : "bg-white"
+                }`}
               >
-                <option value="wardrobe">Wardrobe</option>
-                <option value="living-space">Living space</option>
-                <option value="kitchen">Kitchen</option>
-                <option value="full-house">Full house</option>
-              </select>
-            </label>
+                {lane.label}
+              </button>
+            ))}
+          </div>
 
-            <label className="grid gap-1 text-sm">
-              Notes
-              <textarea
-                value={projectNotes}
-                onChange={(event) => setProjectNotes(event.target.value)}
-                rows={4}
-                placeholder="Color palette and material options can be added later."
-                className="px-3 py-2 border rounded-md"
-              />
-            </label>
+          {selectedLane && (
+            <div className="grid gap-3 pt-2">
+              <label className="grid gap-1 text-sm">
+                Lane label
+                <input
+                  value={selectedLane.label}
+                  onChange={(event) => updateLane(selectedLane.id, "label", event.target.value)}
+                  className="px-3 py-2 border rounded-md"
+                />
+              </label>
 
-            <div className="p-3 text-sm border rounded-md bg-white">
-              <p>
-                <span className="font-semibold">Active modules:</span> {modules.length}
-              </p>
-              <p>
-                <span className="font-semibold">Selected:</span>{" "}
-                {selectedModule ? selectedModule.label : "None"}
-              </p>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <label className="grid gap-1 text-sm">
+                  Width (in)
+                  <input
+                    type="number"
+                    min={MIN_WIDTH}
+                    value={selectedLane.widthInches}
+                    onChange={(event) =>
+                      updateLane(
+                        selectedLane.id,
+                        "widthInches",
+                        Math.max(MIN_WIDTH, Number(event.target.value) || MIN_WIDTH)
+                      )
+                    }
+                    className="px-3 py-2 border rounded-md"
+                  />
+                </label>
+                <label className="grid gap-1 text-sm">
+                  Height (in)
+                  <input
+                    type="number"
+                    min={MIN_HEIGHT}
+                    value={selectedLane.heightInches}
+                    onChange={(event) =>
+                      updateLane(
+                        selectedLane.id,
+                        "heightInches",
+                        Math.max(MIN_HEIGHT, Number(event.target.value) || MIN_HEIGHT)
+                      )
+                    }
+                    className="px-3 py-2 border rounded-md"
+                  />
+                </label>
+                <label className="grid gap-1 text-sm">
+                  Depth (in)
+                  <input
+                    type="number"
+                    min={MIN_DEPTH}
+                    value={selectedLane.depthInches}
+                    onChange={(event) =>
+                      updateLane(
+                        selectedLane.id,
+                        "depthInches",
+                        Math.max(MIN_DEPTH, Number(event.target.value) || MIN_DEPTH)
+                      )
+                    }
+                    className="px-3 py-2 border rounded-md"
+                  />
+                </label>
+                <label className="grid gap-1 text-sm">
+                  Ground gap (in)
+                  <input
+                    type="number"
+                    min="0"
+                    value={selectedLane.groundGapInches}
+                    onChange={(event) =>
+                      updateLane(
+                        selectedLane.id,
+                        "groundGapInches",
+                        Math.max(0, Number(event.target.value) || 0)
+                      )
+                    }
+                    className="px-3 py-2 border rounded-md"
+                  />
+                </label>
+                <label className="grid gap-1 text-sm">
+                  Shelves
+                  <input
+                    type="number"
+                    min="0"
+                    value={selectedLane.shelves}
+                    onChange={(event) =>
+                      updateLane(
+                        selectedLane.id,
+                        "shelves",
+                        Math.max(0, Number(event.target.value) || 0)
+                      )
+                    }
+                    className="px-3 py-2 border rounded-md"
+                  />
+                </label>
+                <label className="grid gap-1 text-sm">
+                  Drawers
+                  <input
+                    type="number"
+                    min="0"
+                    value={selectedLane.drawers}
+                    onChange={(event) =>
+                      updateLane(
+                        selectedLane.id,
+                        "drawers",
+                        Math.max(0, Number(event.target.value) || 0)
+                      )
+                    }
+                    className="px-3 py-2 border rounded-md"
+                  />
+                </label>
+              </div>
+
+              <label className="grid gap-1 text-sm">
+                Door style
+                <select
+                  value={selectedLane.doorStyle}
+                  onChange={(event) => updateLane(selectedLane.id, "doorStyle", event.target.value)}
+                  className="px-3 py-2 border rounded-md"
+                >
+                  {styleOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <button
+                type="button"
+                onClick={() => removeLane(selectedLane.id)}
+                className="self-start px-3 py-2 text-sm border rounded-md hover:bg-red-50"
+              >
+                Remove selected lane
+              </button>
             </div>
-          </div>
-        </section>
-      </div>
-
-      <section className="p-5 border rounded-xl bg-zinc-50">
-        <h2 className="text-xl font-semibold">3. Module Configuration</h2>
-        {!selectedModule ? (
-          <p className="pt-3 text-gray-600">Select a placed module to edit its settings.</p>
-        ) : (
-          <div className="grid gap-4 pt-4 md:grid-cols-2">
-            <label className="grid gap-1 text-sm">
-              Module label
-              <input
-                type="text"
-                value={selectedModule.label}
-                onChange={(event) => updateSelectedModule("label", event.target.value)}
-                className="px-3 py-2 border rounded-md"
-              />
-            </label>
-
-            <label className="grid gap-1 text-sm">
-              Width (inches)
-              <input
-                type="number"
-                min="1"
-                value={selectedModule.widthInches}
-                onChange={(event) =>
-                  updateSelectedModule(
-                    "widthInches",
-                    Math.max(1, Number(event.target.value) || 1)
-                  )
-                }
-                className="px-3 py-2 border rounded-md"
-              />
-            </label>
-
-            <label className="grid gap-1 text-sm">
-              Height (inches)
-              <input
-                type="number"
-                min="1"
-                value={selectedModule.heightInches}
-                onChange={(event) =>
-                  updateSelectedModule(
-                    "heightInches",
-                    Math.max(1, Number(event.target.value) || 1)
-                  )
-                }
-                className="px-3 py-2 border rounded-md"
-              />
-            </label>
-
-            <label className="grid gap-1 text-sm">
-              Ground level (inches)
-              <input
-                type="number"
-                min="0"
-                value={selectedModule.groundLevelInches}
-                onChange={(event) =>
-                  updateSelectedModule("groundLevelInches", Number(event.target.value) || 0)
-                }
-                className="px-3 py-2 border rounded-md"
-              />
-            </label>
-
-            <label className="grid gap-1 text-sm">
-              Door count
-              <input
-                type="number"
-                min="0"
-                value={selectedModule.doors}
-                onChange={(event) =>
-                  updateSelectedModule("doors", Number(event.target.value) || 0)
-                }
-                className="px-3 py-2 border rounded-md"
-              />
-            </label>
-
-            <label className="grid gap-1 text-sm">
-              Sub-panels
-              <input
-                type="number"
-                min="0"
-                value={selectedModule.subPanels}
-                onChange={(event) =>
-                  updateSelectedModule("subPanels", Number(event.target.value) || 0)
-                }
-                className="px-3 py-2 border rounded-md"
-              />
-            </label>
-
-            <label className="flex items-center gap-2 text-sm md:col-span-2">
-              <input
-                type="checkbox"
-                checked={selectedModule.hasEntryDoor}
-                onChange={(event) =>
-                  updateSelectedModule("hasEntryDoor", event.target.checked)
-                }
-              />
-              Has entry door
-            </label>
-
-            <label className="grid gap-1 text-sm md:col-span-2">
-              Entry door type
-              <select
-                value={selectedModule.entryDoorType}
-                onChange={(event) => updateSelectedModule("entryDoorType", event.target.value)}
-                disabled={!selectedModule.hasEntryDoor}
-                className="px-3 py-2 border rounded-md disabled:bg-gray-200"
-              >
-                <option value="single">Single</option>
-                <option value="double">Double</option>
-                <option value="sliding">Sliding</option>
-                <option value="folding">Folding</option>
-              </select>
-            </label>
-          </div>
-        )}
+          )}
+        </div>
       </section>
 
-      {modules.length > 0 && (
-        <section className="p-5 border rounded-xl bg-zinc-50">
-          <h2 className="text-xl font-semibold">Current Layout Summary</h2>
-          <div className="pt-4 overflow-auto">
-            <table className="w-full text-sm border">
-              <thead className="bg-white">
-                <tr>
-                  <th className="px-3 py-2 text-left border">Module</th>
-                  <th className="px-3 py-2 text-left border">Position</th>
-                  <th className="px-3 py-2 text-left border">W × H (in)</th>
-                  <th className="px-3 py-2 text-left border">Ground (in)</th>
-                  <th className="px-3 py-2 text-left border">Doors</th>
-                  <th className="px-3 py-2 text-left border">Sub-panels</th>
-                  <th className="px-3 py-2 text-left border">Entry door</th>
-                </tr>
-              </thead>
-              <tbody>
-                {modules.map((module) => (
-                  <tr key={module.id} className="bg-zinc-50">
-                    <td className="px-3 py-2 border">{module.label}</td>
-                    <td className="px-3 py-2 border">
-                      {module.x + 1},{module.y + 1}
-                    </td>
-                    <td className="px-3 py-2 border">
-                      {module.widthInches} × {module.heightInches}
-                    </td>
-                    <td className="px-3 py-2 border">{module.groundLevelInches}</td>
-                    <td className="px-3 py-2 border">{module.doors}</td>
-                    <td className="px-3 py-2 border">{module.subPanels}</td>
-                    <td className="px-3 py-2 border">
-                      {module.hasEntryDoor ? module.entryDoorType : "No"}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      <section className="p-5 border rounded-xl bg-zinc-50 space-y-4">
+        <h2 className="text-xl font-semibold">Visual Lane Preview</h2>
+        <p className="text-sm text-gray-600">
+          This front elevation uses lane widths and heights for a simple realistic visual feel.
+        </p>
+
+        <div className="p-4 overflow-x-auto bg-white border rounded-lg">
+          <div className="min-w-[700px]">
+            <div className="flex items-end gap-1 h-[360px] bg-gradient-to-b from-zinc-50 to-zinc-100 p-2 border rounded-md">
+              {lanes.map((lane) => {
+                const widthRatio = totals.totalWidth > 0 ? lane.widthInches / totals.totalWidth : 0;
+                const heightRatio = totals.maxHeight > 0 ? lane.heightInches / totals.maxHeight : 0;
+                const laneHeight = Math.max(120, Math.round(heightRatio * 320));
+                const shelfLines = Array.from({ length: Math.min(lane.shelves, 10) });
+
+                return (
+                  <button
+                    key={lane.id}
+                    type="button"
+                    onClick={() => setSelectedLaneId(lane.id)}
+                    style={{ width: `${Math.max(widthRatio * 100, 8)}%`, height: `${laneHeight}px` }}
+                    className={`relative border-2 rounded-sm transition ${
+                      selectedLaneId === lane.id
+                        ? "border-black bg-zinc-200"
+                        : "border-zinc-500 bg-zinc-100 hover:bg-zinc-200"
+                    }`}
+                  >
+                    <div
+                      className="absolute inset-x-0 border-t border-zinc-500"
+                      style={{ bottom: `${Math.min(lane.groundGapInches, 24) * 3}px` }}
+                    />
+
+                    {shelfLines.map((_, shelfIndex) => (
+                      <div
+                        key={`shelf-${lane.id}-${shelfIndex}`}
+                        className="absolute inset-x-1 border-t border-zinc-400"
+                        style={{ top: `${((shelfIndex + 1) / (shelfLines.length + 1)) * 100}%` }}
+                      />
+                    ))}
+
+                    {lane.doorStyle === "single" && (
+                      <div className="absolute inset-y-2 left-1/2 border-l border-zinc-600" />
+                    )}
+                    {lane.doorStyle === "double" && (
+                      <>
+                        <div className="absolute inset-y-2 left-1/2 border-l border-zinc-600" />
+                        <div className="absolute top-1/2 left-1 right-1 border-t border-zinc-600" />
+                      </>
+                    )}
+                    {lane.doorStyle === "sliding" && (
+                      <>
+                        <div className="absolute inset-y-3 left-[42%] border-l border-zinc-600" />
+                        <div className="absolute inset-y-3 left-[58%] border-l border-zinc-600" />
+                      </>
+                    )}
+
+                    {lane.drawers > 0 && (
+                      <div className="absolute bottom-1 left-1 right-1 text-[10px] text-zinc-700">
+                        {lane.drawers} drawers
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="grid grid-cols-1 gap-1 mt-2 text-xs text-gray-600 md:grid-cols-3">
+              {lanes.map((lane) => (
+                <div key={`meta-${lane.id}`} className="px-2 py-1 border rounded bg-zinc-50">
+                  <span className="font-semibold">{lane.label}:</span> {lane.widthInches}W × {lane.heightInches}H
+                  × {lane.depthInches}D
+                </div>
+              ))}
+            </div>
           </div>
-          <p className="pt-4 text-xs text-gray-500">
-            Color palette controls can be connected later when your palette options are ready.
-          </p>
-        </section>
-      )}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function StatCard({ label, value, tone = "normal" }) {
+  return (
+    <div
+      className={`p-3 border rounded-md ${
+        tone === "warning" ? "bg-amber-50 border-amber-200" : "bg-white"
+      }`}
+    >
+      <p className="text-xs text-gray-500">{label}</p>
+      <p className="text-lg font-semibold">{value}</p>
     </div>
   );
 }
