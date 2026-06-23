@@ -40,7 +40,7 @@ import Image from "next/image";
                     <img className="h-auto max-w-full rounded-lg" src="/image/seven.jpeg" alt="Interior design project" />
                 </div>
                 <div>
-                    <img className="h-auto max-w-full rounded-lg" src="/image/six.jpeg" alt="Interior design project" />
+                    <img className="h-auto max-w-full rounded-lg" src="/image/Six.jpeg" alt="Interior design project" />
                 </div>
             </div>
             <div className="flex flex-col gap-4">
