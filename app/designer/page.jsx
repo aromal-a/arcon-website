@@ -24,6 +24,7 @@ const styleOptions = [
 const MIN_WIDTH = 12;
 const MIN_HEIGHT = 60;
 const MIN_DEPTH = 12;
+const PIXELS_PER_INCH = 3;
 
 export default function DesignerPage() {
   const [projectName, setProjectName] = useState("My Wardrobe");
@@ -340,7 +341,7 @@ export default function DesignerPage() {
                   >
                     <div
                       className="absolute inset-x-0 border-t border-zinc-500"
-                      style={{ bottom: `${Math.min(lane.groundGapInches, 24) * 3}px` }}
+                      style={{ bottom: `${Math.min(lane.groundGapInches, 24) * PIXELS_PER_INCH}px` }}
                     />
 
                     {shelfLines.map((_, shelfIndex) => (
