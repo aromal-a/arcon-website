@@ -8,7 +8,7 @@ export default function AboutComponent() {
             </div>
             <div className="grid lg:grid-cols-2 place-items-center ">
                 <div>
-                    <Image src="/image/aboutfront.png" width={900} height={500} alt="" className="max-md:hidden" />
+                    <Image src="/image/s4.jpg" width={900} height={500} alt="" className="max-md:hidden" />
                 </div>
 
                 <div className="items-center">
