@@ -6,31 +6,31 @@ export default function CatalogueSection() {
     const items = [
         {
             id: "01",
-            catagory: "BEDROOM DESIGNS",
+            category: "BEDROOM DESIGNS",
             title: "Cozy Bedroom Setup",
-            #image: "/image/badroom.jpg",
-            description: "family drowing room with a clean and comfortable design for your family.",
+            image: "public/image/gallery10",
+            description: "A whole new range of designs and sets that turn your sleeping space into a bold and cozy setup",
         },
         {
             id: "02",
-            catagory: "KITCHEN ACCESSORIES",
+            category: "KITCHEN ACCESSORIES",
             title: "Neat & Clean Kitchen Accessories",
-            #image: "/image/kitchen1.jpg",
-            description: "family drowing room with a clean and comfortable design for your family.",
+            image: "public/image/gallery11",
+            description: "You deserve a clean kitchen table that is sleek and modern.",
         },
         {
             id: "03",
-            catagory: "DRAWER SETUP",
+            category: "DRAWER SETUP",
             title: "Family Drawer Room, Lockers and Safety Measures",
-            #image: "/image/drowing.jpg",
-            description: "family drowing room with a clean and comfortable design for your family.",
+            image: "public/image/gallery13",
+            description: "High quality security for keeping your belonging. Top-knotch security accessories",
         },
         {
             id: "04",
-            catagory: "LIVING SETUP",
+            category: "LIVING SETUP",
             title: "Quiet Relaxing spaces built just for you",
-            #image: "/image/living.jpg",
-            description: "family drowing room with a clean and comfortable design for your family.",
+            image: "public/image/gallery14",
+            description: "A comfortable living space steup for your beautiful home.",
         },
     ]
 
