@@ -186,7 +186,7 @@ export default function CupboardDesigner() {
 
         {/* Info Text */}
         <p className={styles.infoText}>
-          💡 Drag to rotate • Mouse wheel to zoom (coming soon)
+          💡 Drag to rotate • Use controls to adjust dimensions
         </p>
       </div>
 
@@ -255,6 +255,7 @@ export default function CupboardDesigner() {
             <li>Shelf Capacity: {shelves} shelves</li>
             <li>Avg Shelf Space: {((width * depth) / 100).toFixed(2)} cm²</li>
             <li>Depth Factor: {depthFactor.toFixed(2)}</li>
+            <li>Total Measurements: {width}×{height}×{depth}cm</li>
           </ul>
         </div>
 
