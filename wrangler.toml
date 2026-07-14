@@ -1,0 +1,13 @@
+name = "arcon-website"
+type = "javascript"
+main = "functions/[[path]].js"
+compatibility_date = "2024-01-01"
+
+[build]
+command = "npm run build"
+cwd = "./"
+
+[env.production]
+routes = [
+  { pattern = "arconfordesigns.xyz", zone_name = "arconfordesigns.xyz" }
+]
